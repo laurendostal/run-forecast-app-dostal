@@ -1,0 +1,14 @@
+<div class="login-div">
+ <form class="login-form" action="/api/login" method="POST">
+  <h1>Login</h1>
+  <p class="login-description">To log your runs and view your saved workouts</p>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    {{#if error}}
+      <p class="login-error">{{error}}</p>
+    {{/if}}
+    <button class="btn">Submit</button>
+  </form>
+</div>

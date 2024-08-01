@@ -1,0 +1,40 @@
+
+{{#if workouts}}
+    <main>
+    <h2>Workout data</h2>
+    
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Distance</th>
+            <th>Elapsed Time</th>
+            <th>Location</th>
+            <th>Temperature</th>
+            <th>Feels Like Temperature</th>
+            <th>Humidity</th>
+            <th>Actions</th>
+        </tr>
+        {{#each workouts}}
+            <tr class="clickable-row-disabled" data-id="{{this.id}}">
+                <td width="13%">{{this.date}}</td>
+                <td>{{this.clocktime}}</td>
+                <td>{{this.distance}}</td>
+                <td>{{this.elapsedtime}}</td>
+                <td>{{this.location}}</td>
+                <td>{{this.temperature}}</td>
+                <td>{{this.feels_like_temperature}}</td>
+                <td>{{this.humidity}}</td>
+                <td><a href="/workouts/{{this.id}}">edit</a><br> 
+                    <a href="javascript: deleteWorkout('{{this.id}}')">delete</a></td>
+            </tr>
+        {{/each}}
+    </table>
+    </main>
+{{else}}
+    <main>
+        <h2>No workouts saved</h2>
+    </main> 
+{{/if}}
+
+<script src="index.js"></script>

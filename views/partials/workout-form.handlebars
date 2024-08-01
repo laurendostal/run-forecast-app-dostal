@@ -1,0 +1,58 @@
+<main>
+  <h1>Add workout</h1>
+  
+    <form name="workouts_form" action="/workouts" method="POST">
+      
+      <label for="workout_date">*Date: </label>
+      <input name="workout_date" id="workout_date" type="date" value=""/>
+      <br>  
+
+      <label for="workout_clocktime">*Time: </label>
+      <input name="workout_clocktime" id="workout_clocktime" type="time" step="1" value=""/>
+      <br>  
+
+      <label for="workout_distance">*Distance: </label>
+      <input name="workout_distance" id="workout_distance" type="number" min="0" max="100" value=""/>miles
+      <br>
+
+      <label for="workout_elapsedtime">Elapsed time: </label>
+      <input name="workout_elapsedtime" id="workout_elapsedtime" type="text"  value="00:00:00"/>
+      <br>
+      
+      <label for="workout_location">Location: </label>
+      <input name="workout_location" id="workout_location" type="text" value="" placeholder=" "/>
+      <br>  
+      
+      <label for="workout_temperature">Temperature: </label>
+      <input name="workout_temperature" id="workout_temperature" type="number" min="-50" max="140" value="0"/>
+      <br> 
+
+      <label for="workout_feels_like_temperature">Feels like temperature: </label>
+      <input name="workout_feels_like_temperature" id="workout_feels_like_temperature" type="number" min="-50" max="140" value="0"/>
+      <br> 
+
+      <label for="workout_humidity">Humidity: </label>
+      <input name="workout_humidity" id="workout_humidity" type="number" min="0" max="100" value="0"/>
+      <br>  
+
+      <input id="log-workout_button" type="button" value="Save" onclick="submitForm()"/>
+
+      <script>
+        function submitForm() {
+          if (checkForm() && confirm("OK to add workout?") == true) {
+            document.workouts_form.submit()
+            document.workouts_form.reset()
+          }
+        }
+        function checkForm() {
+          if (document.getElementById("workout_date").value && 
+              document.getElementById("workout_clocktime").value &&
+              document.getElementById("workout_distance").value) {
+            return true
+          } else {
+            return false
+          }
+        }
+      </script>
+    </form>
+</main>

@@ -1,0 +1,14 @@
+{{> header}}
+
+  <h1>Create an Account</h1>
+  <form class="login-form" action="/api/signup" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    {{#if error}}
+      <p class="login-error">{{error}}</p>
+    {{/if}}
+    <button class="btn">Submit</button>
+  </form>
+

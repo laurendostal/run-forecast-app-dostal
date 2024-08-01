@@ -1,0 +1,18 @@
+{{> header}}
+
+{{#if isLoggedIn}}
+  {{#if isUpdate}}
+    {{> workout-form-update}}
+
+  {{else}}
+    {{> workout-form}}
+    {{> weather}}
+    {{> workouts}}
+  {{/if}}
+ 
+{{else}}
+  {{> login}}
+  {{> about}}
+{{/if}}
+
+{{> footer}}

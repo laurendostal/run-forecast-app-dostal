@@ -1,0 +1,91 @@
+<main>
+    
+  <h1>Update workout</h1>
+   
+    <form name="workouts_form" action="/workouts/{{workout.[0].id}}" method="POST">
+      
+      <label for="workout_date">*Date: </label>
+      <input name="workout_date" id="workout_date" type="date" value="{{workout.[0].date}}"/>
+      <br>  
+
+      <label for="workout_clocktime">*Time: </label>
+      <input name="workout_clocktime" id="workout_clocktime" type="time" step="1" value="{{workout.[0].clocktime}}"/>
+      <br> 
+
+      <label for="workout_distance">*Distance: </label>
+      <input name="workout_distance" id="workout_distance" type="number" min="0" max="100" value="{{workout.[0].distance}}"/>miles
+      <br>
+
+      <label for="workout_elapsedtime">Elapsed time: </label>
+      <input name="workout_elapsedtime" id="workout_elapsedtime" type="text" value="{{workout.[0].elapsedtime}}"/>
+      <br>
+      
+      <label for="workout_location">Location: </label>
+      <input name="workout_location" id="workout_location" type="text" value="{{workout.[0].location}}" placeholder=" "/>
+      <br>  
+      
+      <label for="workout_temperature">Temperature: </label>
+      <input name="workout_temperature" id="workout_temperature" type="number" min="-50" max="140" value="{{workout.[0].temperature}}"/>
+      <br> 
+
+      <label for="workout_feels_like_temperature">Feels like temperature: </label>
+      <input name="workout_feels_like_temperature" id="workout_feels_like_temperature" type="number" min="-50" max="140" value="{{workout.[0].feels_like_temperature}}"/>
+      <br> 
+
+      <label for="workout_humidity">Humidity: </label>
+      <input name="workout_humidity" id="workout_humidity" type="number" min="0" max="100" value="{{workout.[0].humidity}}"/>
+      <br>  
+
+      <input id="log_workout_button" type="button" value="Save" onclick="submitForm()"/>
+      <input id="cancel_workout_button" type="button" value="Cancel" onclick="cancelForm()"/>
+
+      {{#if error}}
+      <h2>{{error}}</h2>
+      {{/if}}
+
+
+      <script>
+        function cancelForm() {
+            location.replace("/")
+        }
+
+        async function submitForm() {
+
+          {{#if error}}
+            location.replace("/")
+            return
+          {{/if}}
+
+          if (confirm("Update workout?") == true) {
+
+            const workout_date = document.getElementById("workout_date").value
+            const workout_clocktime = document.getElementById("workout_clocktime").value
+            const workout_distance = document.getElementById("workout_distance").value
+            const workout_elapsedtime = document.getElementById("workout_elapsedtime").value
+            const workout_location = document.getElementById("workout_location").value
+            const workout_temperature = document.getElementById("workout_temperature").value
+            const workout_feels_like_temperature = document.getElementById("workout_feels_like_temperature").value
+            const workout_humidity = document.getElementById("workout_humidity").value
+
+            const put_data = {
+                    workout_date: workout_date,
+                    workout_clocktime: workout_clocktime,
+                    workout_distance: workout_distance,
+                    workout_elapsedtime: workout_elapsedtime,
+                    workout_location: workout_location,
+                    workout_temperature: workout_temperature,
+                    workout_feels_like_temperature: workout_feels_like_temperature,
+                    workout_humidity: workout_humidity
+                }
+
+            const response = await fetch('/workouts/{{workout.[0].id}}', {
+                method: 'PUT',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify(put_data)
+            })
+            if (response.status === 200) location.replace("/")
+          }
+        }
+      </script>
+    </form>
+</main>
