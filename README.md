@@ -1,1 +1,1 @@
-# run-forecast-app-dostal
+# Run Journal App
